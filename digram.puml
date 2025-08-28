@@ -1,0 +1,197 @@
+' @startuml
+' entity "employees" {
+'     *id : int <<PK>> [auto_increment] <<NOT NULL>>
+'     *emp_id : varchar(255) <<NULL>>
+'     *name : varchar(100) <<NOT NULL>>
+'     *age : int <<NOT NULL>>
+'     *doj : date <<NOT NULL>>
+'     *email : varchar(100) <<UNI>> <<NOT NULL>>
+'     *gender : enum('Male', 'Female') <<NOT NULL>>
+'     *contact : varchar(15) <<UNI>> <<NOT NULL>>
+'     *address : text <<NOT NULL>>
+' }
+
+' entity "employee_salary" {
+'     *emp_id : varchar(10) <<PK>> <<NOT NULL>>
+'     *emp_name : varchar(100) <<NULL>>
+'     *base_pay : decimal(10,2) <<NULL>>
+'     *present_days : int <<NULL>>
+'     *medical : decimal(10,2) <<NULL>>
+'     *conveyance : decimal(10,2) <<NULL>>
+'     *pf : decimal(10,2) <<NULL>>
+'     *net_salary : decimal(10,2) <<NULL>>
+' }
+
+' entity "reports" {
+'     *id : int <<PK>> [auto_increment] <<NOT NULL>>
+'     *emp_id : varchar(10) <<NOT NULL>>
+'     *pdf_file : longblob <<NOT NULL>>
+'     *report_type : varchar(100) <<NOT NULL>>
+'     *created_date : date <<NOT NULL>>
+'     *created_by : varchar(100) <<NOT NULL>>
+' }
+
+' entity "salary_slips" {
+'     *id : int <<PK>> [auto_increment] <<NOT NULL>>
+'     *emp_id : varchar(10) <<NOT NULL>>
+'     *pdf_file : longblob <<NOT NULL>>
+' }
+
+' entity "users" {
+'     *id : int <<PK>> [auto_increment] <<NOT NULL>>
+'     *username : varchar(50) <<UNI>> <<NOT NULL>>
+'     *password : varchar(255) <<NOT NULL>>
+' }
+
+' ' Relationships
+' employees ||--o| employee_salary : has
+' employees ||--o| reports : generates
+' employees ||--o| salary_slips : receives
+' users ||--o| reports : manages
+
+' @enduml
+
+@startuml Employee Management System
+
+' Define the styles and colors
+skinparam backgroundColor #FFFFFF
+skinparam classBackgroundColor #E0F7FA
+skinparam classBorderColor #00ACC1
+skinparam classArrowColor #00838F
+skinparam classFontColor #006064
+skinparam classFontSize 14
+skinparam classFontName Arial
+skinparam packageBackgroundColor #E1F5FE
+skinparam packageBorderColor #039BE5
+
+' Define the packages
+package "Authentication" {
+  class "LoginPage" {
+    - username: StringVar
+    - password: StringVar
+    + login()
+    + sign_up()
+  }
+  
+  class "SignupPage" {
+    - username: StringVar
+    - password: StringVar
+    + signup()
+    + login()
+  }
+}
+
+package "Core Modules" {
+  class "HomePage" {
+    + open_main()
+    + go_to_login()
+    + search_employee()
+    + open_terms()
+    + open_aboutus()
+    + open_feedback()
+    + open_reportpage()
+    + open_cal()
+    + sala()
+    + generate_id()
+  }
+  
+  class "EmployeeDetails" {
+    - name: StringVar
+    - age: StringVar
+    - doj: StringVar
+    - gender: StringVar
+    - email: StringVar
+    - contact: StringVar
+    + add_employee()
+    + update_employee()
+    + delete_employee()
+    + clear_fields()
+    + fetch_data()
+    + go_home()
+  }
+  
+  class "GenerateIDApp" {
+    - entry_name: Entry
+    - entry_contact: Entry
+    - entry_department: Entry
+    + connect_db()
+    + generate_unique_id()
+    + assign_employee_id()
+  }
+  
+  class "SalaryApp" {
+    - var_emp_id: StringVar
+    - var_emp_name: StringVar
+    - var_base_pay: StringVar
+    - var_present: StringVar
+    - var_medical: StringVar
+    - var_conv: StringVar
+    - var_p_f: StringVar
+    - var_net_sal: StringVar
+    + connect_database()
+    + insert_data()
+    + generate_slip()
+    + print_pdf()
+    + save_pdf_to_db()
+    + show_slip()
+    + backhome()
+  }
+  
+  class "ReportApp" {
+    - db: DatabaseConnection
+    - current_user: User
+    + login()
+    + setup_main_ui()
+    + setup_report_form()
+    + generate_chart_preview()
+    + generate_report()
+    + save_report_to_database()
+    + generate_pdf_report()
+    + send_report_email()
+  }
+}
+
+package "Utilities" {
+  class "AboutUs" {
+    + about_window()
+  }
+  
+  class "DatabaseConnection" {
+    + connect()
+    + close()
+    + execute_query()
+  }
+  
+  class "User" {
+    - id: int
+    - username: string
+    - email: string
+    - role: string
+  }
+}
+
+' Define the relationships
+LoginPage --> SignupPage: redirects to
+SignupPage --> LoginPage: redirects to
+LoginPage --> HomePage: on successful login
+HomePage --> EmployeeDetails: opens
+HomePage --> SalaryApp: opens
+HomePage --> GenerateIDApp: opens
+HomePage --> ReportApp: opens
+HomePage --> AboutUs: opens
+EmployeeDetails --> HomePage: returns to
+SalaryApp --> HomePage: returns to
+ReportApp --> DatabaseConnection: uses
+EmployeeDetails --> DatabaseConnection: uses
+SalaryApp --> DatabaseConnection: uses
+GenerateIDApp --> DatabaseConnection: uses
+ReportApp --> User: authenticates
+
+@enduml
+
+
+
+
+
+
+

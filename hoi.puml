@@ -1,0 +1,132 @@
+@startuml
+!define table(x) class x << (T,#FFAAAA) >>
+!define dim(x) class x << (D,#AADDFF) >>
+
+' Fact Table
+table(Reservation_Fact) {
+  + Reservation_ID : PK
+  - Customer_ID : FK
+  - Staff_ID : FK
+  - Time_ID : FK
+  - Booking_ID : FK
+  - Service_ID : FK
+  - Location_ID : FK
+  - Number_of_Nights
+  - Total_Amount
+  - Discount_Applied
+  - Extra_Charges
+  - Number_of_Guests
+}
+
+' Dimensions
+dim(Customer_Dimension) {
+  + Customer_ID : PK
+  - Name
+  - Gender
+  - Age
+  - Nationality_ID : FK
+}
+
+dim(Nationality_Dimension) {
+  + Nationality_ID : PK
+  - Nationality_Name
+  - Continent
+}
+
+dim(Staff_Dimension) {
+  + Staff_ID : PK
+  - Name
+  - Role_ID : FK
+  - Shift_ID : FK
+}
+
+dim(Role_Dimension) {
+  + Role_ID : PK
+  - Role_Name
+  - Department
+}
+
+dim(Shift_Dimension) {
+  + Shift_ID : PK
+  - Shift_Name
+  - Start_Time
+  - End_Time
+}
+
+dim(Time_Dimension) {
+  + Time_ID : PK
+  - Day
+  - Month_ID : FK
+  - Year
+}
+
+dim(Month_Dimension) {
+  + Month_ID : PK
+  - Month_Name
+  - Quarter
+}
+
+dim(Booking_Dimension) {
+  + Booking_ID : PK
+  - Booking_Mode_ID : FK
+  - Booking_Status
+  - Booking_Date
+}
+
+dim(Booking_Mode_Dimension) {
+  + Booking_Mode_ID : PK
+  - Mode_Type
+}
+
+dim(Service_Dimension) {
+  + Service_ID : PK
+  - Service_Type_ID : FK
+  - Service_Date
+}
+
+dim(Service_Type_Dimension) {
+  + Service_Type_ID : PK
+  - Type_Name
+  - Service_Rate
+}
+
+dim(Location_Dimension) {
+  + Location_ID : PK
+  - Resort_ID : FK
+  - City
+  - State_ID : FK
+}
+
+dim(Resort_Dimension) {
+  + Resort_ID : PK
+  - Resort_Branch_Name
+}
+
+dim(State_Dimension) {
+  + State_ID : PK
+  - State_Name
+  - Country
+}
+
+' Relationships (fact to dimensions)
+Reservation_Fact --> Customer_Dimension
+Customer_Dimension --> Nationality_Dimension
+
+Reservation_Fact --> Staff_Dimension
+Staff_Dimension --> Role_Dimension
+Staff_Dimension --> Shift_Dimension
+
+Reservation_Fact --> Time_Dimension
+Time_Dimension --> Month_Dimension
+
+Reservation_Fact --> Booking_Dimension
+Booking_Dimension --> Booking_Mode_Dimension
+
+Reservation_Fact --> Service_Dimension
+Service_Dimension --> Service_Type_Dimension
+
+Reservation_Fact --> Location_Dimension
+Location_Dimension --> Resort_Dimension
+Location_Dimension --> State_Dimension
+
+@enduml

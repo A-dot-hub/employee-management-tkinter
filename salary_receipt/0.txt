@@ -1,0 +1,18 @@
+Company Name: BVP, Vasai (w)
+
+Address: Xyz, Floor4
+..........................................................
+Employee ID		: 1024
+Generated On		: 20-12-2020
+
+..........................................................
+Total Present		: 20
+Convinence		: Rs.1000
+Medical		: Rs.2000
+PF		: Rs.1500
+..........................................................
+Net Salary		: Rs.25455222 
+
+
+This is a computer-generated slip, not requiring any signature
+

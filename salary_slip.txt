@@ -1,0 +1,2 @@
+pip install matplotlib fpdf2
+pip install reportlab
