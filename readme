@@ -1,33 +1,32 @@
-# 🧑‍💼 Employee Management System (Tkinter + MySQL)
+🧑‍💼 Employee Management System (Tkinter + MySQL)
 
-A desktop-based **Employee Management System** built using **Python Tkinter** for the GUI and **MySQL** for the database.  
-This project helps manage employee records with features like **add, update, delete, search, and generate reports**.
+A desktop-based Employee Management System built using Python Tkinter for the GUI and MySQL for the database.  
+This project helps manage employee records with features like add, update, delete, search, and generate reports.
 
----
 
-## 🚀 Features
+🚀 Features
 
 - Add new employees with details (ID, Name, Age, Salary, Department, etc.)
 - Update employee records easily
 - Delete employees
 - Search and view employee details
-- Data stored securely in **MySQL database**
-- Clean and interactive **Tkinter GUI**
-- Export employee details to **PDF reports** (with charts)
+- Data stored securely in MySQL database
+- Clean and interactive Tkinter GUI
+- Export employee details to PDF reports (with charts)
 - Dropdown options for quick actions
 
 ---
 
-## 🛠️ Tech Stack
+🛠️ Tech Stack
 
-- **Python** (Tkinter for GUI)
-- **MySQL** (Database)
-- **ReportLab / Matplotlib** (PDF & charts)
-- **Pillow** (for image/logo support in reports)
+- Python (Tkinter for GUI)
+- MySQL(Database)
+- ReportLab / Matplotlib (PDF & charts)
+- Pillow (for image/logo support in reports)
 
 ---
 
-## 📂 Project Structure
+📂 Project Structure
 
 EmployeeManagement/
 │── main.py # Main Tkinter app
@@ -39,7 +38,7 @@ EmployeeManagement/
 
 ---
 
-## ⚡ Installation & Setup
+⚡ Installation & Setup
 
 1. Clone the repository:
    ```bash
