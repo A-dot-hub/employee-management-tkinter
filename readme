@@ -4,12 +4,12 @@ A desktop-based **Employee Management System** built using **Python Tkinter** fo
 This project helps manage employee records with features like **add, update, delete, search, and generate reports**.
 
 ---
-
+ 
 ## 🚀 Features
 
 - Add new employees with details (ID, Name, Age, Salary, Department, etc.)
 - Update employee records easily
-- Delete employees
+- Delete employee
 - Search and view employee details
 - Data stored securely in **MySQL database**
 - Clean and interactive **Tkinter GUI**
